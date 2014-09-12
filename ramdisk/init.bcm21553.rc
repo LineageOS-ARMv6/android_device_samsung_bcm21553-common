@@ -5,6 +5,11 @@ import init.bcm21553.sensors.rc
 import init.bcm21553.usb.rc
 import init.bcm21553.wifi.rc
 
+on early-init
+    # remove /etc/recovery.fstab to fix /system/etc compatibility symlink
+    rm /etc/recovery.fstab
+    rmdir /etc
+
 on init
 
     # sdcard
@@ -16,9 +21,6 @@ on init
     export SD_EXT_DIRECTORY /mnt/sd-ext
     mkdir /mnt/sd-ext 0000 system system
     symlink /mnt/sd-ext /sd-ext
-
-    # vold.fstab (workaround)
-    symlink /system/etc/vold.fstab /etc/vold.fstab
 
     # zRAM - see https://source.android.com/devices/low-ram.html
     write /proc/sys/vm/page-cluster 0
