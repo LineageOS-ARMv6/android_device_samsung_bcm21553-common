@@ -33,6 +33,7 @@ on post-fs-data
 
 # geomagnetic_raw
     chown compass input /sys/class/input/input2/offsets
+    write /sys/class/input/input2/offsets "-5 -1 7 93600 -311600 -1009200 3"
 
 # orientation
     chown system input /sys/class/input/input4/enable
