@@ -8,12 +8,11 @@ DLOPEN_LIBMMCAMERA:=1
 include $(CLEAR_VARS)
 LOCAL_MODULE_TAGS := optional
 LOCAL_PRELINK_MODULE := false
-LOCAL_SHARED_LIBRARIES := liblog libutils libcutils
-LOCAL_SHARED_LIBRARIES += libui libhardware libcamera_client
-LOCAL_SHARED_LIBRARIES += libcamera
+LOCAL_SHARED_LIBRARIES := libutils libui libcamera_client liblog libcutils
 
-LOCAL_C_INCLUDES := $(TOP)/frameworks/base/include
-LOCAL_C_INCLUDES += hardware/libhardware/include
+LOCAL_C_INCLUDES       := frameworks/base/services \
+                          frameworks/av/include \
+                          hardware/libhardware/include
 
 LOCAL_C_INCLUDES	+= \
     $(TARGET_OUT_HEADERS)/mm-camera \
@@ -21,11 +20,13 @@ LOCAL_C_INCLUDES	+= \
 
 LOCAL_CFLAGS		:= -DDLOPEN_LIBMMCAMERA=$(DLOPEN_LIBMMCAMERA)
 
-$(shell mkdir -p $(TARGET_OUT_INTERMEDIATES)/SHARED_LIBRARIES/libcamera_intermediates)
-$(shell touch $(TARGET_OUT_INTERMEDIATES)/SHARED_LIBRARIES/libcamera_intermediates/export_includes)
+$(shell mkdir -p $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include)
+
+LOCAL_C_INCLUDES	+= $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
+LOCAL_ADDITIONAL_DEPENDENCIES := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
+
 DLOPEN_LIBCAMERA	:= 1
 LOCAL_SRC_FILES		:= BcmCamera.cpp
-LOCAL_LDFLAGS		+= -Lvendor/samsung/$(TARGET_DEVICE)/proprietary/lib -lcamera
 LOCAL_CFLAGS		+= -DDLOPEN_LIBCAMERA=$(DLOPEN_LIBCAMERA)
 
 ## Can be raised to 6 to improve framerate, at the cost of allocating
