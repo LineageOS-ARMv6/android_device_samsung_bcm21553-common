@@ -46,13 +46,15 @@ BOARD_FLASH_BLOCK_SIZE				:= 131072
 BOARD_RECOVERY_HANDLES_MOUNT			:= true
 BOARD_HAS_DOWNLOAD_MODE				:= true
 TARGET_NO_SEPARATE_RECOVERY			:= true
-TARGET_RECOVERY_LCD_BACKLIGHT_PATH		:= \"/sys/class/backlight/aat1401-backlight/brightness\"
+TARGET_RECOVERY_LCD_BACKLIGHT_PATH	        := \"/sys/class/backlight/aat1401-backlight/brightness\"
+
 # cwm
 #TARGET_RECOVERY_FSTAB                           := device/samsung/bcm21553-common/recovery/fstab.cm.bcm21553
 
 # TWRP
 TARGET_RECOVERY_FSTAB                           := device/samsung/bcm21553-common/recovery/fstab.twrp.bcm21553
 TW_CUSTOM_CPU_TEMP_PATH                         := /sys/class/power_supply/battery/batt_temp
+TW_BRIGHTNESS_PATH                              := "/sys/devices/platform/aat1401-backlight.0/backlight/aat1401-backlight/brightness"
 TARGET_RECOVERY_PIXEL_FORMAT                    := "BGRA_8888"
 TW_CUSTOM_POWER_BUTTON                          := 116
 TW_EXCLUDE_MTP                                  := true
