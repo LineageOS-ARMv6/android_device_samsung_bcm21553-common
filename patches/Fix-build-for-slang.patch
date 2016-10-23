@@ -1,0 +1,17 @@
+Subject: [PATCH] Makefile: fix build for GCC
+---
+ Android.mk  | 2 +-
+ 1 file changed, 0 insertion(+), 2 deletion(-)
+
+diff --git a/Android.mk  b/Android.mk
+--- a/Android.mk
++++ b/Android.mk
+@@ -19,7 +19,7 @@
+
+ LOCAL_PATH := $(call my-dir)
+ 
+-local_cflags_for_slang := -Wno-sign-promo -Wall -Wno-unused-parameter -Werror
++local_cflags_for_slang := -Wno-sign-promo -Wall -Wno-unused-parameter
+ ifneq ($(TARGET_BUILD_VARIANT),eng)
+ local_cflags_for_slang += -D__DISABLE_ASSERTS
+ endif

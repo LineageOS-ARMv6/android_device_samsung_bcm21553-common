@@ -1,0 +1,17 @@
+Subject: [PATCH] Allow e2fsprogs to be built using the clang (LLVM) frontend
+---
+ lib/ext2fs/bitops.h | 2 ++
+ 1 file changed, 2 insertion(+), 0 deletion(-)
+
+diff --git a/lib/ext2fs/bitops.h b/lib/ext2fs/bitops.h
+--- a/lib/ext2fs/bitops.h
++++ b/lib/ext2fs/bitops.h
+@@ -20,5 +20,7 @@
+ extern __u64 ext2fs_swab64(__u64 val);
+
++#define NO_INLINE_FUNCS
++
+ #ifdef WORDS_BIGENDIAN
+ #define ext2fs_cpu_to_le64(x) ext2fs_swab64((x))
+ #define ext2fs_le64_to_cpu(x) ext2fs_swab64((x))
+

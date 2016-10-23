@@ -1,0 +1,16 @@
+Subject: [PATCH] Fix for Dalvik compile error on CyanogenMod 9
+---
+ vm/native/dalvik_system_Zygote.cpp | 2 --
+ 1 file changed, 0 insertion(+), 2 deletion(-)
+
+diff --git a/vm/native/dalvik_system_Zygote.cpp b/vm/native/dalvik_system_Zygote.cpp
+--- a/vm/native/dalvik_system_Zygote.cpp
++++ b/vm/native/dalvik_system_Zygote.cpp
+@@ -21,7 +21,5 @@
+ #include "native/InternalNativePriv.h"
+ 
+ #include <signal.h>
+-#if (__GNUC__ == 4 && (__GNUC_MINOR__ == 7 || __GNUC_MINOR__ == 8))
+ #include <sys/resource.h>
+-#endif
+ #include <sys/types.h>
