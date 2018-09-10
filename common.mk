@@ -54,10 +54,10 @@ PRODUCT_PACKAGES += \
 # Audio
 PRODUCT_PACKAGES += \
     audio.primary.bcm21553 \
-    audio_policy.bcm21553 \
-    libtinyalsa \
     audio.a2dp.default \
-    libaudioutils
+    audio.usb.default \
+    audio.r_submix.default
+
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -132,13 +132,13 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/etc/gps.conf:system/etc/gps.conf
 
-# Media
-#PRODUCT_COPY_FILES += \
-#    $(LOCAL_PATH)/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml
-
-# ALSA Sound configuration file
+# Media profiles
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/etc/asound.conf:system/etc/asound.conf
+    $(LOCAL_PATH)/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml
+
+# Audio policy
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf
 
 # The OpenGL ES API level that is natively supported by this device.
 # This is a 16.16 fixed point number
@@ -196,8 +196,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.gprsclass=10 \
     ro.ril.hsxpa=1 \
     ro.telephony.call_ring.delay=0 \
-    ro.telephony.default_network=0 \
-    ro.telephony.ril.v3=icccardstatus,datacall,signalstrength,facilitylock
+    ro.telephony.default_network=0
 
 # Wifi interface
 PRODUCT_PROPERTY_OVERRIDES += \
